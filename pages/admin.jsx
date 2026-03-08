@@ -1,19 +1,25 @@
 import { Link, Route, Routes } from "react-router-dom";
+import { FaRegListAlt } from "react-icons/fa";
+import { MdOutlineInventory2 } from "react-icons/md";
+import { LuUserRound } from "react-icons/lu";
+import AdminProductPage from "./admin/adminProductPage";
+import AdminAddProductPage from "./admin/adminAddProductPage";
 
 export default function AdminPage(){
     return(
-        <div className="w-full h-full border-4 border-blue-600 flex">
-            <div className="w-[300px] h-full  bg-red-900 flex flex-col">
-                <Link to="/admin/">Oders</Link>
-                <Link to="/admin/products">Products</Link>
-                <Link to="/admin/users">Users</Link>
+        <div className="w-full h-full border-4 flex bg-accent">
+            <div className="w-[300px] h-full   flex flex-col bg-accent text-white text-xl">
+                <h1 className="text-3xl font-bold p-5 border-b-4 border-white">Admin Panel</h1>
+                <Link className="flex w-full p-[10px] gap-3 items-center hover:bg-white hover:text-accent" to="/admin/"><FaRegListAlt/>Oders</Link>
+                <Link className="flex w-full p-[10px] gap-3 items-center hover:bg-white hover:text-accent" to="/admin/products"><MdOutlineInventory2/>Products</Link>
+                <Link className="flex w-full p-[10px] gap-3 items-center hover:bg-white hover:text-accent" to="/admin/users"><LuUserRound/>Users</Link>
             </div>
-            
-            <div className="w-[calc(100%-300px)] h-full bg-yellow-400">
+            <div className="w-[calc(100%-300px)] h-full border-8 border-accent rounded-[20px] bg-primary p-4">
                 <Routes>
                     <Route path="/"element={<h1>Oders page</h1>}/>
-                    <Route path="/products" element={<h1>Products page</h1>}/>
+                    <Route path="/products" element={<AdminProductPage/>}/>
                     <Route path="/users" element={<h1>Users page</h1>}/>
+                    <Route path="/add-product" element={<AdminAddProductPage/>}/>
                 </Routes>
             </div>
         </div>
