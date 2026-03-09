@@ -17,9 +17,9 @@ export default function AdminPage(){
             <div className="w-[calc(100%-300px)] h-full border-8 border-accent rounded-[20px] bg-primary p-4">
                 <Routes>
                     <Route path="/"element={<h1>Oders page</h1>}/>
-                    <Route path="/products" element={<AdminProductPage/>}/>
-                    <Route path="/users" element={<h1>Users page</h1>}/>
-                    <Route path="/add-product" element={<AdminAddProductPage/>}/>
+                    <Route path="products" element={<AdminProductPage/>}/>
+                    <Route path="users" element={<h1>Users page</h1>}/>
+                    <Route path="add-product" element={<AdminAddProductPage/>}/>
                 </Routes>
             </div>
         </div>

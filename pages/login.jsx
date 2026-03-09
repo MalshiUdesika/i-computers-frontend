@@ -35,6 +35,7 @@ export default function LoginPage(){
         )
         console.log(response)
         toast.success("Login successful")
+        localStorage.setItem("token", response.data.token)
         if(response.data.role === "admin"){
                 navigate("/admin/")
         }else{
@@ -45,7 +46,7 @@ export default function LoginPage(){
         }catch(error){
             console.log(error)
             //console.log("Login Failed")
-            toast.error("Login Failed")
+            toast.error(error?.response?.data?.message || "Failed to login");
 
         }
     }
