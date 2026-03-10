@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import getFormattedPrice from "../../src/utils/price-format";
+import axios from "axios";
 
-export  default function AdminProductPage(){
 
     const sampleProducts = [
   {
@@ -73,21 +73,27 @@ export  default function AdminProductPage(){
   }
 ];
 
+
+export  default function AdminProductPage(){
+
     const [products, setProducts] = useState([]);
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+
+        axios.get(import.meta.env.VITE_API_URL + "/products", {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        }).then((response) => {
+            setProducts(response.data);
+        });
+    }, [])
 
     return(
         <div className="w-full h-full overflow-y-scroll ">
 
-            {/* {
-                products.map(
-                    (item, index)=>{
-                        return <h1 key={item.productId}>{item.name}</h1>
-                    }
-                )
-             } */}
-
              <div className="w-full p-6 bg-primary rounded-xl shadow-lg overflow-x-auto">
-  <table className="w-full border-collapse text-sm">
+                <table className="w-full border-collapse text-sm">
     
     {/* Table Head */}
     <thead className="bg-accent/80 text-white uppercase">
@@ -106,7 +112,7 @@ export  default function AdminProductPage(){
 
     {/* Table Body */}
     <tbody className="bg-white text-secondary">
-      {sampleProducts.map((item, index) => {
+      {products.map((item, index) => {
         return (
           <tr key={index}
             className="odd:bg-accent/15 border-b border-gray-200 hover:bg-primary transition">

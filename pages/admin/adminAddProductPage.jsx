@@ -2,18 +2,20 @@ import { useState } from "react"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import uploadFile from "../../src/utils/mediaUpload";
 
 export default function AdminAddProductPage(){
     const [productId, setProductId] = useState("");
     const [name, setName] = useState("");
-    const [description, setDescription] = useState("")
-    const [altNames, setAltNames] = useState("")
+    const [description, setDescription] = useState("");
+    const [altNames, setAltNames] = useState("");
     const [price, setPrice] = useState("")
-    const [labelledPrice, setLabelledPrice] = useState("")
+    const [labelledPrice, setLabelledPrice] = useState("");
     const [category, setCategory] = useState("Others")
     const [brand, setBrand] = useState("Standard")
     const [model, setModel] = useState("")
     const [isVisible, setIsVisible] = useState(true);
+    const [files, setFiles] = useState([]);
     const navigate = useNavigate();
 
     async function handleAddProduct(){
@@ -25,13 +27,23 @@ export default function AdminAddProductPage(){
                 window.location.href = "/login";
                 return;
             }
+
+            const fileUploadPromises = [];
+
+            for(let i=0; i < files.length; i++){
+                fileUploadPromises[i] = uploadFile(files[i])
+            }
+
+            const imageURLs = await Promise.all(fileUploadPromises);
+
             await axios.post(import.meta.env.VITE_API_URL + "/products", {
                 productId: productId,
                 name: name,
                 description: description,
                 price: price,
                 labelledPrice: labelledPrice,
-                altNames: altNames.split(","), 
+                altNames: altNames.split(","),
+                images: imageURLs, 
                 category: category,
                 brand: brand,
                 model: model,
@@ -74,6 +86,11 @@ export default function AdminAddProductPage(){
                 <textarea value={description} onChange={(e)=>{setDescription(e.target.value)}} placeholder="Ex: Laptop" className="border-4 border-accent rounded-[10px] h-[100px] p-2 m- focus:outline-white"/>
             </div>
             
+            <div className="w-full h-[120px] flex flex-col">
+                <label className="font-bold ml-2">Images :</label>
+                <input multiple type="file" onChange={(e)=>{setFiles(e.target.files)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2"/>
+            </div>
+
             <div className="w-full h-[120px] flex flex-col">
                 <label className="font-bold ml-2">Alternative Names((Comma Separeted)) :</label>
                 <input value={altNames} onChange={(e)=>{setAltNames(e.target.value)}} type="text" placeholder="Ex: Laptop, Notebook, portable Computer" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m- focus:outline-white"/>

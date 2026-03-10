@@ -1,14 +1,33 @@
+import { useState } from "react"
+import uploadFile from "../utils/mediaUpload"
+
+
 export default function Test(){
+
+    const [file, setFile] = useState(null)
+
+    
+
+    async function upload(){
+       try{
+            const url = await uploadFile(file)
+            console.log(url)
+
+       }catch(err){
+        console.log("upload failed")
+       }
+    }
     return(
-        <div className="w-[600px] h-[600px] border-4 relative">
-            <div className="w-[500px] h-[500px] bg-amber-200 flex flex-col items-center justify-center relative">
-                <div className="w-[75px] h-[75px] bg-blue-600"></div>
-                <div className="w-[75px] h-[75px] bg-red-600"></div>
-                <div className="w-[75px] h-[75px] bg-green-600 absolute top-[10px] right-[10px] z-[1]"></div>
-                <div className="w-[75px] h-[75px] bg-purple-600 fixed top-[10px] right-[150px] x-[2]"></div>
-                <div className="w-[75px] h-[75px] bg-black"></div>
-                <div className="w-[75px] h-[75px] bg-[#08FFFF]"></div>
-            </div>
+        <div className="w-full h-full flex justify-center items-center">
+           
+           <input type="file" onChange={
+            (e)=>{
+                setFile(e.target.files[0])
+            }
+           }/>
+           <button onClick={upload} className="w-[100px] h-[40px] bg-accent text-white rounded-lg">Upload</button>
+
         </div>
     )
 }
+
