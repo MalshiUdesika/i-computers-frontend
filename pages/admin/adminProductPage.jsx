@@ -3,81 +3,21 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import getFormattedPrice from "../../src/utils/price-format";
 import axios from "axios";
-
-
-    const sampleProducts = [
-  {
-    "productId": "P1001",
-    "name": "Wireless Mouse",
-    "price": 2500,
-    "labelledPrice": 3200,
-    "category": "Accessories",
-    "images": [
-      "https://images.unsplash.com/photo-1587829741301-dc798b83add3"
-    ],
-    "isVisible": true,
-    "brand": "Logitech",
-    "model": "M185"
-  },
-  {
-    "productId": "P1002",
-    "name": "Mechanical Keyboard",
-    "price": 8500,
-    "labelledPrice": 9500,
-    "category": "Accessories",
-    "images": [
-      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f"
-    ],
-    "isVisible": true,
-    "brand": "Redragon",
-    "model": "K552"
-  },
-  {
-    "productId": "P1003",
-    "name": "Gaming Headset",
-    "price": 6500,
-    "labelledPrice": 7200,
-    "category": "Audio",
-    "images": [
-      "https://images.unsplash.com/photo-1580894894513-541e068a3e2b"
-    ],
-    "isVisible": false,
-    "brand": "HyperX",
-    "model": "Cloud Stinger"
-  },
-  {
-    "productId": "P1004",
-    "name": "27 inch Monitor",
-    "price": 52000,
-    "labelledPrice": 58000,
-    "category": "Display",
-    "images": [
-      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf"
-    ],
-    "isVisible": true,
-    "brand": "Samsung",
-    "model": "Odyssey G5"
-  },
-  {
-    "productId": "P1005",
-    "name": "External SSD 1TB",
-    "price": 32000,
-    "labelledPrice": 36000,
-    "category": "Storage",
-    "images": [
-      "https://images.unsplash.com/photo-1580894908361-967195033215"
-    ],
-    "isVisible": true,
-    "brand": "SanDisk",
-    "model": "Extreme Portable"
-  }
-];
+import { CiEdit, CiTrash } from "react-icons/ci";
+import toast from "react-hot-toast";
+import LoadingAnimation from "../../src/components/loadingAnimation";
+import DeleteModel from "../../src/components/deleteModel";
 
 
 export  default function AdminProductPage(){
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true)
+
+
     useEffect(()=>{
+
+      if(loading){
         const token = localStorage.getItem("token");
 
         axios.get(import.meta.env.VITE_API_URL + "/products", {
@@ -86,14 +26,17 @@ export  default function AdminProductPage(){
             },
         }).then((response) => {
             setProducts(response.data);
+            setLoading(false)
         });
-    }, [])
+
+      }
+    }, [loading])
 
     return(
         <div className="w-full h-full overflow-y-scroll ">
 
              <div className="w-full p-6 bg-primary rounded-xl shadow-lg overflow-x-auto">
-                <table className="w-full border-collapse text-sm">
+               {loading?<div className="w-full h-full flex justify-center items-center"><LoadingAnimation/></div>: <table className="w-full border-collapse text-sm">
     
     {/* Table Head */}
     <thead className="bg-accent/80 text-white uppercase">
@@ -107,6 +50,7 @@ export  default function AdminProductPage(){
         <th className="px-4 py-3 text-left">Visibility</th>
         <th className="px-4 py-3 text-left">Brand</th>
         <th className="px-4 py-3 text-left">Model</th>
+        <th className="px-4 py-3 text-left">Actions</th>
       </tr>
     </thead>
 
@@ -147,12 +91,22 @@ export  default function AdminProductPage(){
 
             <td className="px-4 py-3">{item.brand}</td>
             <td className="px-4 py-3">{item.model}</td>
+
+            <td className="h-full px-5 py-4">
+              <div className="flex justify-center items-center text-2xl gap-2">
+                <Link to="/admin/update-product" state={item}>
+
+                <CiEdit  className="hover:text-accent"/></Link>
+                <DeleteModel product={item} setLoading={setLoading}/>
+
+              </div>
+            </td>
           </tr>
         );
       })}
     </tbody>
 
-  </table>
+  </table>}
 </div>
 
              <Link to="/admin/add-product" className="text-white bg-accent w-[50px] h-[50px] flex justify-center items-center text-2xl rounded-[20px] hover:rounded-full fixed bottom-12 right-16">

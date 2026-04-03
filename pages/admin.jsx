@@ -4,6 +4,7 @@ import { MdOutlineInventory2 } from "react-icons/md";
 import { LuUserRound } from "react-icons/lu";
 import AdminProductPage from "./admin/adminProductPage";
 import AdminAddProductPage from "./admin/adminAddProductPage";
+import AdminUpdateroductPage from "./admin/adminUpdateProductPage";
 
 export default function AdminPage(){
     return(
@@ -20,6 +21,7 @@ export default function AdminPage(){
                     <Route path="products" element={<AdminProductPage/>}/>
                     <Route path="users" element={<h1>Users page</h1>}/>
                     <Route path="add-product" element={<AdminAddProductPage/>}/>
+                    <Route path="/update-product" element={<AdminUpdateroductPage/>}/>
                 </Routes>
             </div>
         </div>
