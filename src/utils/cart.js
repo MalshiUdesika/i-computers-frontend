@@ -1,8 +1,11 @@
 export function getCart() {
-	const cartString = localStorage.getItem("cart");
+	const token = localStorage.getItem("token");
+	const cartKey = token ? `cart_${token}` : "cart_guest";
+
+	const cartString = localStorage.getItem(cartKey);
 
 	if (cartString == null) {
-		localStorage.setItem("cart", "[]");
+		localStorage.setItem(cartKey, "[]");
 		return [];
 	} else {
 		const cart = JSON.parse(cartString);
@@ -34,7 +37,9 @@ const sampleCart = [
 ];
 
 export function addToCart(product , qty){
-    
+	const token = localStorage.getItem("token");
+	const cartKey = token ? `cart_${token}` : "cart_guest";
+
     const cart = getCart();
 
     const existingProductIndex = cart.findIndex(
@@ -82,7 +87,7 @@ export function addToCart(product , qty){
 
     const cartString = JSON.stringify(cart);
 
-    localStorage.setItem("cart", cartString);
+    localStorage.setItem(cartKey, cartString);
 
 }
 

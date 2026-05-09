@@ -80,7 +80,6 @@ export default function Checkout(){
                     )
                 }
                 <div className="bg-white lg:w-[600px] w-full h-[100px] sticky bottom-0 rounded-xl shadow flex items-center">
-                    <button className="bg-accent text-white px-4 py-2 rounded ml-5 hover:bg-accent/80">Buy now</button>
                     <CheckOutDetailsModal cart={cart} />
                     <span className="text-xl font-bold text-secondary absolute right-5 border-b-4  border-double">{getFormattedPrice(getCartTotal(cart))}</span>
                 </div>

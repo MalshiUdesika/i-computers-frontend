@@ -79,7 +79,7 @@ export default function Overview() {
 							<button className="px-4 py-2 bg-green-500 rounded hover:bg-green-600 cursor-pointer" onClick={
 								()=>{
 									addToCart(product ,1)
-									toast.success(product.name +"added to cart")
+									toast.success(product.name +" added to cart")
 								}
 							}>Add to Cart</button>
 							<Link to="/checkout" state={

@@ -16,7 +16,7 @@ export default function ProductPage(){
             if(loading){
                 let url = import.meta.env.VITE_API_URL + "/products/"
                 if(searchQuery!=""){
-                    url = import.meta.env.VITE_API_URL + "/products/search/" + searchQuery
+                    url = import.meta.env.VITE_API_URL + "/products/search/" + encodeURIComponent(searchQuery)
                 }
                 axios.get(url)
                 .then(
@@ -32,7 +32,7 @@ export default function ProductPage(){
                 )
             }
 
-        },[loading]
+        },[loading, searchQuery]
     )
 
 

@@ -15,7 +15,7 @@ export default function Cart(){
                         (cartItem , index)=>{
                             return(
                                 <div key={index} className="w-full lg:w-[600px]  lg:h-[150px] bg-white flex flex-row rounded-lg shadow overflow-hidden items-center ">
-                                    <img className="h-[150px] aspect-square object-cover" src={cartItem.product.image} alt={cartItem.name} />
+                                    <img className="h-[150px] aspect-square object-cover" src={cartItem.product.image?.replace(/\\/g, '/')} alt={cartItem.name} />
                                     <div className="h-full w-[280px] p-4 flex flex-col  overflow-hidden  justify-between">
                                         <p className="text-xs text-gray-500">{cartItem.product.productId}</p>
                                         <h1 className="text-xl font-bold">{cartItem.product.name}</h1>
@@ -29,6 +29,7 @@ export default function Cart(){
                                                 <BiMinus/>
                                             </button>
                                             <span className="lg:w-[70px] h-full flex justify-center items-center  text-lg font-bold text-gray-700">
+                                                {cartItem.qty}
                                             </span>
                                             <button onClick={
                                                 ()=>{

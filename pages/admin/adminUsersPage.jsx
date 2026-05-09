@@ -47,7 +47,7 @@ export default function AdminUsersPage() {
 			</div>
 			{ loading ? (
 				<div className="w-full h-full flex justify-center items-center">
-					<LoadingAnimation />
+					<LoadingAnimation/>
 				</div>
 			) : (
 				<table className="min-w-[1100px] w-full text-sm relative">

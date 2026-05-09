@@ -52,7 +52,7 @@ export default function LoginPage() {
 				
 				navigate("/admin/")
 			}else{
-				//redirect to home page "/"
+				navigate("/")
 			}
 		}catch(err){
 			toast.error(err?.response?.data?.message || "Failed to login");
@@ -60,13 +60,13 @@ export default function LoginPage() {
 	}
 
 	return (
-		<div className="w-full h-full bg-[url('/background.jpg')] bg-cover no-repeat bg-center flex">
+		<div className="w-full h-full bg-[url('/images/background.jpg')] bg-cover no-repeat bg-center flex">
 			<div className="w-[50%]  h-full hidden lg:flex justify-center items-center flex-col">
-				<img src="/logo.png" className="w-[300px]" />
-				<h1 className="text-4xl font-bold mt-5 text-white">Isuri Computers</h1>
+				<img src="public\images\logo.png" className="w-[300px]" />
+				<h1 className="text-4xl font-bold mt-5 text-white">Infinity Computers</h1>
 			</div>
 			<div className="w-full lg:w-[50%]  h-full  flex justify-center items-center">
-				<div className="backdrop-blur-3xl w-[450px] h-[600px] shadow-2xl rounded-lg flex flex-col justify-center">
+				<div className="text-white backdrop-blur-3xl w-[450px] h-[600px] shadow-2xl rounded-lg flex flex-col justify-center">
 					<input
 						type="email"
 						placeholder="Email"
@@ -96,7 +96,7 @@ export default function LoginPage() {
 					<button onClick={login} className="m-5 p-3 w-[90%] h-[50px] bg-accent rounded-lg text-white font-bold">
 						Login
 					</button>
-					<button  onClick={googleLogin}className="m-5 p-3 w-[90%] h-[50px] border border-accent rounded-lg text-white font-bold">
+					<button onClick={googleLogin} className="m-5 p-3 w-[90%] h-[50px] border border-accent rounded-lg text-white font-bold">
 						Login with Google
 					</button>
 					<p className="w-full  text-right pr-5">

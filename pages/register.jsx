@@ -61,9 +61,9 @@ export default function RegisterPage() {
 	}
 
 	return (
-		<div className="w-full h-full bg-[url('/background.jpg')] bg-cover no-repeat bg-center flex">
+		<div className="w-full h-full bg-[url('public/images/background.jpg')] bg-cover no-repeat bg-center flex">
 			<div className="w-[50%] h-full hidden lg:flex justify-center items-center flex-col">
-				<img src="/logo.png" className="w-[300px]" />
+				<img src="public\images\logo.png" className="w-[300px]" />
 				<h1 className="text-4xl font-bold mt-5 text-white">Isuri Computers</h1>
 			</div>
 			

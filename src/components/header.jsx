@@ -10,12 +10,12 @@ export default function Header() {
 	const [isOpen , setIsOpen] = useState(false)
 
 	return (
-<header className="w-full sticky top-0 bg-accent h-[100px] z-1 flex justify-center items-center ">
+<header className="w-full sticky top-0 z-50 bg-accent h-[100px] flex justify-center items-center shadow-lg">
 			
 			<div className="h-full w-full lg:w-auto flex justify-center items-center absolute lg:left-10 ">
 				<GiHamburgerMenu onClick={()=>{setIsOpen(true)}} size={30} color="white" className="mr-8 lg:hidden cursor-pointer"/>
-				<img src="/logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
-				<h1 className="text-white text-md lg:text-2xl font-bold ml-2">Isuri Computers</h1>
+				<img src="public\images\logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
+				<h1 className="text-white text-md lg:text-2xl font-bold ml-2">Infinity Computers</h1>
 
 			</div>
 
