@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useGoogleLogin } from "@react-oauth/google";
+import { migrateGuestCartToUser } from "../src/utils/cart";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ export default function LoginPage() {
 					(response)=>{
 						toast.success("Login Successful")
 						localStorage.setItem("token" , response.data.token)
+						migrateGuestCartToUser()
 						if(response.data.role == "admin"){
 							navigate("/admin/")
 						}else{
@@ -47,6 +49,7 @@ export default function LoginPage() {
 			toast.success("Login Successful")
 
 			localStorage.setItem("token" , response.data.token)
+			migrateGuestCartToUser()
 			
 			if(response.data.role == "admin"){
 				

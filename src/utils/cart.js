@@ -104,4 +104,36 @@ export function getCartTotal(cart){
     return total
 }
 
+export function migrateGuestCartToUser() {
+	const guestCartString = localStorage.getItem("cart_guest");
+	const token = localStorage.getItem("token");
+	
+	if (guestCartString && token) {
+		const guestCart = JSON.parse(guestCartString);
+		const userCartKey = `cart_${token}`;
+		const userCartString = localStorage.getItem(userCartKey);
+		const userCart = userCartString ? JSON.parse(userCartString) : [];
+		
+		// Merge guest cart items with user cart
+		guestCart.forEach((guestItem) => {
+			const existingIndex = userCart.findIndex(
+				(item) => item.product.productId === guestItem.product.productId
+			);
+			
+			if (existingIndex === -1) {
+				// Add new item
+				userCart.push(guestItem);
+			} else {
+				// Add quantities together
+				userCart[existingIndex].qty += guestItem.qty;
+			}
+		});
+		
+		// Save merged cart to user's cart
+		localStorage.setItem(userCartKey, JSON.stringify(userCart));
+		// Clear guest cart
+		localStorage.removeItem("cart_guest");
+	}
+}
+
 

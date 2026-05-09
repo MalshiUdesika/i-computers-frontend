@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiDownArrow } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { getCart } from "../utils/cart";
 
 export default function UserData(){
     const [user , setUser] = useState(null)
@@ -50,6 +51,9 @@ export default function UserData(){
                             window.location.href="/settings"
                         }
                         if(e.target.value=="logout"){
+                            // Save current cart as guest cart before removing token
+                            const currentCart = getCart();
+                            localStorage.setItem("cart_guest", JSON.stringify(currentCart));
                             localStorage.removeItem("token")
                             window.location.href="/login"
                         }

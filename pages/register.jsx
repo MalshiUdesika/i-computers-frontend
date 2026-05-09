@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useGoogleLogin } from "@react-oauth/google";
+import { migrateGuestCartToUser } from "../src/utils/cart";
 
 export default function RegisterPage() {
     const [firstName , setFirstName] = useState("")
@@ -18,6 +19,7 @@ export default function RegisterPage() {
 					(response)=>{
 						toast.success("Login Successful")
 						localStorage.setItem("token" , response.data.token)
+						migrateGuestCartToUser()
 						if(response.data.role == "admin"){
 							navigate("/admin/")
 						}else{
