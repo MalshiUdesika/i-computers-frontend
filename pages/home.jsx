@@ -7,6 +7,8 @@ import Checkout from "./admin/checkout";
 import MyOrdersPage from "./myOrdersPage";
 import SettingsPage from "./settings";
 import LandingPage from "../src/components/landingPage";
+import AboutPage from "./about";
+import ContactPage from "./contactPage";
 
 export default function HomePage(){
     return(
@@ -14,8 +16,8 @@ export default function HomePage(){
             <Header/>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
-                <Route path="/about" element={<div>About page content</div>}/>
-                <Route path="/contact" element={<div>Contact page content</div>}/>
+                <Route path="/about" element={<AboutPage/>}/>
+                <Route path="/contact" element={<ContactPage/>}/>
                 <Route path="/products" element={<ProductPage/>}/>
                 <Route path="/cart"element={<Cart/>}/>
                 <Route path="/Overview/:productId" element={<OverView/>}/>
