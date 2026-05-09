@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast"
 import RegisterPage from "../pages/register"
 import ForgetPassword from "../pages/forgetPassword"
 import { GoogleOAuthProvider } from "@react-oauth/google"
+import Footer from "./components/footer"
 
 
 export default function App() {
@@ -23,7 +24,11 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgetPassword/>} />
         <Route path="/test" element={<Test/>}/>
       </Routes>
+
+      <Footer/>
     </div>
+    
+
     </GoogleOAuthProvider>
 
     
