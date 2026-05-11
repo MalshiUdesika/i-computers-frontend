@@ -311,9 +311,9 @@ export default function AdminUsersPage() {
 			}
 
 			{/* PAGINATION */}
-			<div className="w-full fixed bottom-5 left-0 h-[50px] flex justify-center items-center">
+			<div className="absolute bottom-5 left-0 w-full h-[50px] flex justify-center items-center pointer-events-none">
 
-				<div className="w-[500px] h-full bg-white shadow-2xl rounded-full flex items-center justify-center px-2">
+				<div className="w-[500px] h-full bg-white shadow-2xl rounded-full flex items-center justify-center px-2 pointer-events-auto">
 
 					<button
 						className="bg-accent w-[100px] text-white p-2 rounded-full cursor-pointer hover:bg-accent/80"
