@@ -149,7 +149,7 @@ export default function AdminUpdateroductPage(){
             </div>
 
             <div className="w-full h-[80px] overflow-y-scrol sticky bottom-0 bg-white rounded-b-2xl flex justify-end items-center p-4 gap-4">
-                <button className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
+                <button onClick= {()=> navigate("/admin/products")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
                 <button onClick={handleUpdateProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Update Product</button>
                 
 
