@@ -14,7 +14,7 @@ export default function Header() {
 			
 			<div className="h-full w-full lg:w-auto flex justify-center items-center absolute lg:left-10 ">
 				<GiHamburgerMenu onClick={()=>{setIsOpen(true)}} size={30} color="white" className="mr-8 lg:hidden cursor-pointer"/>
-				<img src="public\images\logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
+				<img src="/images/logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
 				<h1 className="text-white text-md lg:text-2xl font-bold ml-2">Infinity Computers</h1>
 
 			</div>
@@ -34,7 +34,7 @@ export default function Header() {
 			{isOpen&&<div className="fixed bg-black/50 w-full h-screen top-0 left-0">
 				<div className="w-[300px]  h-full bg-white">
 					<div className="h-[100px] bg-accent w-full flex justify-start items-center px-5">
-						<img src="/logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
+						<img src="/images/logo.png" alt="Logo" className="h-[30px] lg:h-[50px]" />
 						<h1 className="text-white text-md lg:text-2xl font-bold ml-2">Infinity Computers</h1>
 						<LuPanelLeftClose onClick={()=>{setIsOpen(false)}} size={30} color="white" className="ml-auto cursor-pointer"/>
 					</div>
@@ -42,7 +42,7 @@ export default function Header() {
 						<a href="/" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">Home</a>
 						<a href="/products" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">Products</a>
 						<a href="/about" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">About</a>
-						<a href="A/contact" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">Contact</a>
+						<a href="/contact" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">Contact</a>
 						<a href="/cart" className="text-secondary text-lg font-semibold py-3 px-5 hover:bg-secondary/10">Cart</a>
 						<div className="border-t border-secondary/20 my-5 bg-accent absolute bottom-0 w-[300px]">
 							<UserData/>

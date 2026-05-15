@@ -140,7 +140,7 @@ export default function AboutPage() {
               
               {/* MAIN IMAGE */}
               <img
-                src="public\images\about-tech.png"
+                src="/images/about-tech.png"
                 alt="Infinity Computers"
                 className="relative z-10 w-full max-w-[650px] drop-shadow-[0_30px_80px_rgba(0,0,0,0.4)] animate-[float_5s_ease-in-out_infinite]"
               />
