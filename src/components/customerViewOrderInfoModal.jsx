@@ -2,32 +2,11 @@ import { useState } from "react";
 import getFormattedDate from "../utils/date-format";
 import getFormattedPrice from "../utils/price-format";
 import { CgClose } from "react-icons/cg";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 
 export default function CustomerViewOrderInfoModal(props) {
 	const [isVisible, setIsVisible] = useState(false);
 	const order = props.order;
-	const [notes, setNotes] = useState(order.notes);
-
-	async function handleSaveNotes() {
-		try {
-			const token = localStorage.getItem("token");
-			await axios.put(import.meta.env.VITE_API_URL + "/orders/" + order.orderId, {
-				notes: notes
-			}, {
-				headers: {
-					"Authorization": `Bearer ${token}`
-				}
-			});
-			toast.success("Notes updated successfully");
-			// Update the order object to reflect changes
-			order.notes = notes;
-		} catch {
-			toast.error("Failed to update notes");
-		}
-	}
 
 
 	return (
@@ -71,16 +50,11 @@ export default function CustomerViewOrderInfoModal(props) {
                                     Status: {order.status}
                                 </h2>
                             </div>
-                            <div className="w-full flex items-start px-5 pb-3">
+                            <div className="w-full flex items-start px-5">
                                 <h1 className="text-lg font-semibold text-white mr-5">
                                     Notes:
                                 </h1>
-                                <textarea 
-                                    value={notes} 
-                                    onChange={(e) => setNotes(e.target.value)} 
-                                    className="w-[350px] h-[60px] text-white p-2 border rounded-lg border-white bg-transparent resize-none"
-                                    placeholder="Add your notes here..."
-                                />
+                                <p>{order.notes}</p>
                             </div>
 						</div>
                         <div className="w-full h-[400px] p-5 overflow-y-scroll">
@@ -104,12 +78,6 @@ export default function CustomerViewOrderInfoModal(props) {
                                 )
                             }
                         </div>
-                        {
-                            order.notes != notes &&
-                            <button onClick={handleSaveNotes} className="bottom-5 right-5 absolute bg-accent text-white p-2 rounded-lg cursor-pointer hover:bg-accent/80">
-                                Save Notes
-                            </button>
-                        }
                        
 					</div>
 				</div>
