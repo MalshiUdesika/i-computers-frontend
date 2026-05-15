@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingAnimation from "../src/components/loadingAnimation";
-import CustomerViewOrderInfoModal from "../src/components/CustomersViewOrderInfoModal";
 import getFormattedDate from "../src/utils/date-format";
 import getFormattedPrice from "../src/utils/price-format";
+import CustomerViewOrderInfoModal from "../src/components/customersViewOrderInfoModal";
 
 
 export default function MyOrdersPage() {
